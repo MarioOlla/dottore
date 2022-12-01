@@ -15,8 +15,6 @@ public class DottoreDTO {
 	public DottoreDTO() {
 		super();
 	}
-	
-	
 
 	public DottoreDTO(String codiceDottore, String codFiscalePazienteAttualmenteInVisita, Boolean inVisita,
 			Boolean inServizio) {
@@ -26,8 +24,6 @@ public class DottoreDTO {
 		this.inVisita = inVisita;
 		this.inServizio = inServizio;
 	}
-
-
 
 	public DottoreDTO(Long id, String nome, String cognome, String codiceDottore,
 			String codFiscalePazienteAttualmenteInVisita, Boolean inVisita, Boolean inServizio) {
@@ -96,12 +92,19 @@ public class DottoreDTO {
 	public void setInServizio(Boolean inServizio) {
 		this.inServizio = inServizio;
 	}
-	
+
 	public Dottore buildDottoreModel() {
-		return new Dottore(this.id, this.nome, this.cognome, this.codiceDottore, this.codFiscalePazienteAttualmenteInVisita, this.inVisita, this.inServizio);
+		return new Dottore(this.id, this.nome, this.cognome, this.codiceDottore,
+				this.codFiscalePazienteAttualmenteInVisita, this.inVisita, this.inServizio);
 	}
-	
+
 	public static DottoreDTO buildDTOFromDottoreModel(Dottore model) {
-		return new DottoreDTO(model.getCodiceDottore(), model.getCodFiscalePazienteAttualmenteInVisita(), model.getInVisita(), model.getInServizio());
+		return new DottoreDTO(model.getId(), model.getNome(), model.getCognome(), model.getCodiceDottore(),
+				model.getCodFiscalePazienteAttualmenteInVisita(), model.getInVisita(), model.getInServizio());
+	}
+
+	public static DottoreDTO buildDTORidottoFromDottoreModel(Dottore model) {
+		return new DottoreDTO(model.getCodiceDottore(), model.getCodFiscalePazienteAttualmenteInVisita(),
+				model.getInVisita(), model.getInServizio());
 	}
 }

@@ -12,9 +12,9 @@ public interface DottoreService {
 
 	Dottore findByCodice(String codice);
 
-	void inserisciNuovo(Dottore input);
+	Dottore inserisciNuovo(Dottore input);
 
-	void aggiorna(Dottore input);
+	Dottore aggiorna(Dottore input);
 
 	void rimuovi(Long id);
 

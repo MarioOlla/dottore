@@ -2,7 +2,6 @@ package it.prova.dottore.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,14 +32,14 @@ public class DottoreServiceImpl implements DottoreService{
 		return repository.findByCodiceDottore(codice).stream().findFirst().orElse(null);
 	}
 	@Override
-	public void inserisciNuovo(Dottore input) {
+	public Dottore inserisciNuovo(Dottore input) {
 		//TODO se l'id non è null lancio eccezione
-		repository.save(null);
+		return repository.save(null);
 	}
 	@Override
-	public void aggiorna(Dottore input) {
+	public Dottore aggiorna(Dottore input) {
 		//TODO se non trovo l'id lancio eccezione
-		repository.save(null);
+		return repository.save(null);
 	}
 	@Override
 	public void rimuovi(Long id) {
