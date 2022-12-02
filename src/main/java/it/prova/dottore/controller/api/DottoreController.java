@@ -34,23 +34,34 @@ public class DottoreController {
 	
 	@GetMapping("/{id}")
 	public DottoreDTO findById(@PathVariable(name = "id", required = true) Long id) {
-		return DottoreDTO.buildDTORidottoFromDottoreModel(service.findById(id));
+		return DottoreDTO.buildDTOStatoFromDottoreModel(service.findById(id));
 	}
 	
 	@GetMapping("/findByCodice/{codiceDottore}")
 	public DottoreDTO findByCOdiceDottore(@PathVariable(name = "codiceDottore",required = true) String codiceDottore) {
-		return DottoreDTO.buildDTORidottoFromDottoreModel(service.findByCodice(codiceDottore));
+		return DottoreDTO.buildDTOStatoFromDottoreModel(service.findByCodice(codiceDottore));
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public DottoreDTO inserisciNuovo(@RequestBody DottoreDTO input ) {
-		return DottoreDTO.buildDTORidottoFromDottoreModel(service.inserisciNuovo(input.buildDottoreModel()));
+		return DottoreDTO.buildDTOStatoFromDottoreModel(service.inserisciNuovo(input.buildDottoreModel()));
 	}
 	
-	@PutMapping
-	public DottoreDTO aggiorna (@RequestBody DottoreDTO input) {
-		return DottoreDTO.buildDTORidottoFromDottoreModel(service.aggiorna(input.buildDottoreModel()));
+	@PutMapping("/aggiornaAnagrafica")
+	public DottoreDTO aggiornaAnagrafica (@RequestBody DottoreDTO input) {
+		return DottoreDTO.buildDTOAnagraficaFromDottoreModel(service.aggiornaAnagrafica(input.buildDottoreModel()));
+	}
+	
+	@PutMapping("/aggiornaStato")
+	public DottoreDTO aggiornaStato (@RequestBody DottoreDTO input) {
+		return DottoreDTO.buildDTOStatoFromDottoreModel(service.aggiornaStato(input.buildDottoreModel()));
+	}
+	
+	@PutMapping("/terminaVisita/{codiceDottore}")
+	@ResponseStatus(HttpStatus.OK)
+	public void terminaVisita(@PathVariable(name = "codiceDottore",required = true) String codiceDottore) {
+		service.terminaVisita(codiceDottore);
 	}
 	
 	@DeleteMapping("/{id}")

@@ -14,8 +14,12 @@ public interface DottoreService {
 
 	Dottore inserisciNuovo(Dottore input);
 
-	Dottore aggiorna(Dottore input);
+	Dottore aggiornaAnagrafica(Dottore input);
+	
+	Dottore aggiornaStato(Dottore input);
 
 	void rimuovi(Long id);
+
+	void terminaVisita(String codiceDottore);
 
 }

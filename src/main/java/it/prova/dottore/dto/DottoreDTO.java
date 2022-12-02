@@ -1,7 +1,10 @@
 package it.prova.dottore.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import it.prova.dottore.model.Dottore;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DottoreDTO {
 
 	private Long id;
@@ -18,7 +21,6 @@ public class DottoreDTO {
 
 	public DottoreDTO(String codiceDottore, String codFiscalePazienteAttualmenteInVisita, Boolean inVisita,
 			Boolean inServizio) {
-		super();
 		this.codiceDottore = codiceDottore;
 		this.codFiscalePazienteAttualmenteInVisita = codFiscalePazienteAttualmenteInVisita;
 		this.inVisita = inVisita;
@@ -35,6 +37,12 @@ public class DottoreDTO {
 		this.codFiscalePazienteAttualmenteInVisita = codFiscalePazienteAttualmenteInVisita;
 		this.inVisita = inVisita;
 		this.inServizio = inServizio;
+	}
+
+	public DottoreDTO(String nome, String cognome, String codiceDottore) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.codiceDottore = codiceDottore;
 	}
 
 	public Long getId() {
@@ -102,8 +110,12 @@ public class DottoreDTO {
 		return new DottoreDTO(model.getId(), model.getNome(), model.getCognome(), model.getCodiceDottore(),
 				model.getCodFiscalePazienteAttualmenteInVisita(), model.getInVisita(), model.getInServizio());
 	}
+	
+	public static DottoreDTO buildDTOAnagraficaFromDottoreModel(Dottore model) {
+		return new DottoreDTO( model.getNome(), model.getCognome(), model.getCodiceDottore());
+	}
 
-	public static DottoreDTO buildDTORidottoFromDottoreModel(Dottore model) {
+	public static DottoreDTO buildDTOStatoFromDottoreModel(Dottore model) {
 		return new DottoreDTO(model.getCodiceDottore(), model.getCodFiscalePazienteAttualmenteInVisita(),
 				model.getInVisita(), model.getInServizio());
 	}
